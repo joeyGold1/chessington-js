@@ -45,8 +45,6 @@ export default class Board {
     }
     //exclusive square 1, inclusive square 2
     checkPieceBetween(square1,square2){
-        console.log("square 1" + square1)
-        console.log("square 2" + square2)
 
         var dirVector = Square.at(Math.sign(square2.row-square1.row), 
                                   Math.sign(square2.col-square1.col));

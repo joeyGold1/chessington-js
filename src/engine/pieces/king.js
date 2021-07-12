@@ -12,9 +12,9 @@ export default class King extends Piece {
         const position = board.findPiece(this);
         const modifiers = King.getKingModifers();
             for (var modifier of modifiers){
-                var possibleSquare = Square.at(position.row+modifier.row, position.col+modifier.col)
-                if (possibleSquare.checkOnBoard()) {
-                    availableMoves.push(possibleSquare);
+                var targetSquare = Square.at(position.row+modifier.row, position.col+modifier.col)
+                if (targetSquare.checkOnBoard() && (!board.getPiece(targetSquare) || board.checkOpposingPiece(targetSquare,this.player))) {
+                    availableMoves.push(targetSquare);
                 }
             }
         return availableMoves;

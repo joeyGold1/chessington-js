@@ -10,11 +10,13 @@ export default class Rook extends Piece {
         const availableMoves = [];
         const position = board.findPiece(this);
         for(var i =0; i<8; i++) {
-            if (i !== position.row) {
-            availableMoves.push(Square.at(i,position.col));
+            var targetSquare = Square.at(i,position.col);
+            if (i !== position.row && !board.checkPieceBetween(position, targetSquare)) {
+            availableMoves.push(targetSquare);
             }
-            if(i!== position.col) {
-            availableMoves.push(Square.at(position.row,i));
+            targetSquare = Square.at(position.row,i);
+            if(i!== position.col && !board.checkPieceBetween(position, targetSquare)) {
+            availableMoves.push(targetSquare);
             }}
         return availableMoves;
     }

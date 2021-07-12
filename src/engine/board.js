@@ -65,12 +65,4 @@ export default class Board {
         }
         return false;
     }
-    static checkDiagonal(square1,square2){
-        return (Math.abs(square1.row-square2.row)==Math.abs(square1.col-square2.col))
-    }
-
-    static range(n1,n2){
-        var numbersToIterate = Array.from(Array(Math.abs(n1-n2)).keys())
-        return numbersToIterate.map(x => Math.min([n1,n2]+x));
-    }
 }

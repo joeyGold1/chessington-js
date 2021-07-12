@@ -43,4 +43,34 @@ export default class Board {
             this.currentPlayer = (this.currentPlayer === Player.WHITE ? Player.BLACK : Player.WHITE);
         }
     }
+    //exclusive square 1, inclusive square 2
+    checkPieceBetween(square1,square2){
+        console.log("square 1" + square1)
+        console.log("square 2" + square2)
+
+        var dirVector = Square.at(Math.sign(square2.row-square1.row), 
+                                  Math.sign(square2.col-square1.col));
+
+        var distance = Math.max(Math.abs(square2.row-square1.row), 
+                                Math.abs(square2.col-square1.col));
+
+        for (var i = 1; i<=distance; i++){
+            var squareToCheck = Square.at(square1.row + i*dirVector.row,
+                                          square1.col + i*dirVector.col);
+            
+            var pieceToCheck =this.getPiece(squareToCheck); 
+            if (!!pieceToCheck){
+                return true;
+            }
+        }
+        return false;
+    }
+    static checkDiagonal(square1,square2){
+        return (Math.abs(square1.row-square2.row)==Math.abs(square1.col-square2.col))
+    }
+
+    static range(n1,n2){
+        var numbersToIterate = Array.from(Array(Math.abs(n1-n2)).keys())
+        return numbersToIterate.map(x => Math.min([n1,n2]+x));
+    }
 }

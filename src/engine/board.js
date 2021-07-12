@@ -43,7 +43,7 @@ export default class Board {
             this.currentPlayer = (this.currentPlayer === Player.WHITE ? Player.BLACK : Player.WHITE);
         }
     }
-    //exclusive square 1, inclusive square 2
+    //exclusive square 1, exclusive square 2
     checkPieceBetween(square1,square2){
 
         var dirVector = Square.at(Math.sign(square2.row-square1.row), 
@@ -52,7 +52,7 @@ export default class Board {
         var distance = Math.max(Math.abs(square2.row-square1.row), 
                                 Math.abs(square2.col-square1.col));
 
-        for (var i = 1; i<=distance; i++){
+        for (var i = 1; i<distance; i++){
             var squareToCheck = Square.at(square1.row + i*dirVector.row,
                                           square1.col + i*dirVector.col);
             
@@ -62,5 +62,9 @@ export default class Board {
             }
         }
         return false;
+    }
+
+    checkOpposingPiece(square, player){
+        return (this.getPiece(square).player !== player && this.getPiece(square).name !== 'king');
     }
 }

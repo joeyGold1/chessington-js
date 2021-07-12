@@ -13,13 +13,13 @@ export default class Pawn extends Piece {
         const moveDir = (this.player === Player.WHITE ? 1 : -1);
         const add1Square = Square.at(position.row + 1*moveDir , position.col);
 
-        if (add1Square.checkOnBoard() && !board.checkPieceBetween(position,add1Square) ) {
+        if (add1Square.checkOnBoard() && !board.checkPieceBetween(position,add1Square) && !board.getPiece(add1Square) ) {
             availableMoves.push(add1Square);
         }
         const linearA = 3.5;
         const linearB = -2.5;
         const add2Square = Square.at(position.row +2 * moveDir, position.col);
-        if (add2Square.checkOnBoard() && position.row==Math.round(linearA+moveDir*linearB) && !board.checkPieceBetween(position,add2Square)){
+        if (add2Square.checkOnBoard() && position.row==Math.round(linearA+moveDir*linearB) && !board.checkPieceBetween(position,add2Square) && !board.getPiece(add2Square)){
             availableMoves.push(add2Square);
         }
         return availableMoves;

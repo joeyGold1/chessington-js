@@ -1,3 +1,5 @@
+import GameSettings from "./gameSettings";
+
 export default class Square {
     constructor(row, col) {
         this.row = row;
@@ -20,7 +22,7 @@ export default class Square {
         return `Row ${this.row}, Col ${this.col}`;
     }
     checkOnBoard() {
-        if (this.row<8 && this.col < 8 && this.row > -1 && this.col > -1){
+        if (this.row< GameSettings.BOARD_SIZE && this.col < GameSettings.BOARD_SIZE && this.row > -1 && this.col > -1){
             return true;
         }
         return false;

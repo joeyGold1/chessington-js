@@ -22,6 +22,13 @@ export default class Pawn extends Piece {
         if (add2Square.checkOnBoard() && position.row==Math.round(linearA+moveDir*linearB) && !board.checkPieceBetween(position,add2Square) && !board.getPiece(add2Square)){
             availableMoves.push(add2Square);
         }
+        const diagonalVectors = [Square.at(moveDir,1),Square.at(moveDir,-1)];
+        for (var modifier of diagonalVectors){
+            var targetSquare = Square.at(position.row+modifier.row,position.col+modifier.col);
+            if (targetSquare.checkOnBoard() && (!!board.getPiece(targetSquare) && board.checkOpposingPiece(targetSquare,this.player))) {
+                availableMoves.push(targetSquare);
+            }
+        }
         return availableMoves;
     }
 }

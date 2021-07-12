@@ -6,6 +6,6 @@ export default class King extends Piece {
     }
 
     getAvailableMoves(board) {
-        return new Array(0);
+        return new Array(0)
     }
 }

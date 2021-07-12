@@ -8,7 +8,6 @@ export default class Pawn extends Piece {
     }
 
     getAvailableMoves(board) {
-        console.log(this.player);
         const availableMoves = [];
         const position = board.findPiece(this);
         const moveDir = (this.player === Player.WHITE ? 1 : -1);
